@@ -27,7 +27,7 @@ class NetworkModule {
         val gson = GsonBuilder().apply {
             setLenient()
         }.create()
-        val baseUrl = "https://raw.githubusercontent.com/kobeumut/user-list/master/"
+        val baseUrl = "https://raw.githubusercontent.com/kobeumut/workshop/master/"
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
