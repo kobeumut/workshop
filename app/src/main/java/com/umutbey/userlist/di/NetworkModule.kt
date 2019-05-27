@@ -1,11 +1,7 @@
 package com.umutbey.userlist.di
 
-import android.util.Log
 import com.google.gson.GsonBuilder
 import com.umutbey.userlist.network.ApiInterface
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

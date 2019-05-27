@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.LoginActivity"
+        <activity android:name="com.umutbey.userlist.view.LoginActivity"
                   android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,8 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity"/>
-        <activity android:name=".view.ProfileActivity"/>
+        <activity android:name="com.umutbey.userlist.view.MainActivity"/>
+        <activity android:name="com.umutbey.userlist.view.ProfileActivity"/>
     </application>
 
 </manifest>

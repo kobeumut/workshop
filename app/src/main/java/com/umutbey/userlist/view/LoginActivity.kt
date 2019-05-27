@@ -27,6 +27,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        initViews()
+    }
+
+    private fun initViews() {
+        textView.setOnClickListener {
+            mail.setText("mona@guy.biz")
+            password.setText("841727396")
+        }
         button.setOnClickListener {
             if (mail.text?.length ?: 0 < 1) {
                 mail_error.error = getString(R.string.error_mail)
