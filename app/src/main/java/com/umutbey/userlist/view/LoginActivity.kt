@@ -2,11 +2,13 @@ package com.umutbey.userlist.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.umutbey.userlist.R
+import com.umutbey.userlist.helpers.ProgressDialog
 import com.umutbey.userlist.helpers.safelyDispose
 import com.umutbey.userlist.viewmodel.LoginViewModel
 import io.reactivex.Observable
@@ -35,16 +37,28 @@ class LoginActivity : AppCompatActivity() {
             mail.setText("mona@guy.biz")
             password.setText("841727396")
         }
+        val dialog = ProgressDialog(this@LoginActivity)
+
         button.setOnClickListener {
+            dialog.show()
+
+
+
+
             if (mail.text?.length ?: 0 < 1) {
-                mail_error.error = getString(R.string.error_mail)
+                mail_error?.error = getString(R.string.error_mail)
             }
             if (password.text?.length ?: 0 < 1) {
-                password_error.error = getString(R.string.error_password)
+                password_error?.error = getString(R.string.error_password)
             }
+            Handler().postDelayed({
+                dialog.hide()
+            }, 1000)
             if (checkLogin) {
                 viewModel.checkLogin(mail.text.toString(), password.text.toString()).observeForever {
                     if (it) {
+                        dialog.hide()
+                        finish()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     } else {
                         Toast.makeText(
@@ -52,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                             "Mail or Password is wrong, please try again",
                             Toast.LENGTH_LONG
                         ).show()
+
                     }
                 }
             }

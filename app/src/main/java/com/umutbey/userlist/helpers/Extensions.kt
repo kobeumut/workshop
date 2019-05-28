@@ -3,6 +3,7 @@ package com.umutbey.userlist.helpers
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -72,4 +73,3 @@ fun String.cleanup(): String {
         return ""
     }
 }
-
