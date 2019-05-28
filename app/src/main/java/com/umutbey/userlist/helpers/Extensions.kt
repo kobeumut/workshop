@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.disposables.Disposable
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 fun AppCompatActivity.isNetworkConnected(): Boolean {
@@ -15,7 +18,19 @@ fun AppCompatActivity.isNetworkConnected(): Boolean {
     val activeNetwork = cm.activeNetworkInfo
     return (activeNetwork != null && activeNetwork.isConnected)
 }
+typealias RetrofitCallback<T> = (Call<T>, Throwable?, Response<T>?) -> Unit
 
+inline fun <reified T> Call<T>.enqueue(crossinline cb: RetrofitCallback<T>) {
+    enqueue(object : Callback<T> {
+        override fun onFailure(call: Call<T>, error: Throwable) {
+            cb(call, error, null)
+        }
+
+        override fun onResponse(call: Call<T>, response: Response<T>) {
+            cb(call, null, response)
+        }
+    })
+}
 fun Disposable.safelyDispose() {
     if (!this.isDisposed) {
         this.dispose()
